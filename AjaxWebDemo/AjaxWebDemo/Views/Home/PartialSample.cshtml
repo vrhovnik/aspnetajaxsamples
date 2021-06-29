@@ -1,6 +1,37 @@
-﻿@{
+﻿@model List<Person>
+@{
     ViewBag.Title = "Partial sample";
     Layout = "_Layout";
 }
 
 <h2>Partial sample</h2>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label"
+               for="tbSurname">
+            Surname
+        </label>
+        <input class="form-control"
+               id="tbSurname"
+               placeholder="enter search term"
+               type="text">
+    </div>
+    <input id="btnDemo1"
+           type="button"
+           value="Get data" />
+</form>
+<div id="results" class="mt-2">
+    @await Html.PartialAsync("_Persons", Model)
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+            $(document).ready(function () {
+                 $('#btnDemo1').click(function () {
+                    $("#results").load("/Home/GetPartial?surname=" + $("#tbSurname").val());
+                });
+            });
+        </script>
+}

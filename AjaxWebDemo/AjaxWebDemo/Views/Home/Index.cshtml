@@ -49,10 +49,9 @@
                 });
                  
                  $('#btnDemo2').click(function () {
-                    let data = { Name:"Luka", Surname:"Vrhovnik",Age: 5};
+                    let data = { Name:"Mike", Surname:"Vrhovnik",Age: 5};
                     $.ajax({
-                        type: 'POST',
-                                              
+                        type: 'POST',                                              
                         dataType: "json",
                         data: JSON.stringify(data),
                         url: '/data/add',

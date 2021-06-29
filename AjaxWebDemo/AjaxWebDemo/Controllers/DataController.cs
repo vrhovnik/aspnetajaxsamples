@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AjaxWebDemo.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,16 +13,10 @@ namespace AjaxWebDemo.Controllers
     [ApiController]
     public class DataController : Controller
     {
-        private List<Person> list = new()
-        {
-            new() {Surname = "Vrhovnik", Name = "Bojan", Age = 30},
-            new() {Surname = "Vrhovnik", Name = "Sandra", Age = 31},
-            new() {Surname = "Zofic", Name = "Oliver", Age = 40}
-        };
-        
         [Route("bysurname/{surname?}")]
         public JsonResult GetData(string surname)
         {
+            var list = StaticDataSource.Data;
             if (!string.IsNullOrEmpty(surname))
                 list = list.Where(d => d.Surname.Contains(surname)).ToList();
             return new JsonResult(list);
@@ -35,18 +30,16 @@ namespace AjaxWebDemo.Controllers
             await Request.Body.CopyToAsync(stream);
             stream.Position = 0;
 
-            using (var reader = new StreamReader(stream))
-            {
-                var requestBody = await reader.ReadToEndAsync();
-
-                if (requestBody.Length > 0)
-                {
-                    var person = JsonConvert.DeserializeObject<Person>(requestBody);
-                    list.Add(person);
-                }
-            }
+            using var reader = new StreamReader(stream);
+            var requestBody = await reader.ReadToEndAsync();
             
-            return Json(list);
+            if (requestBody.Length > 0)
+            {
+                var person = JsonConvert.DeserializeObject<Person>(requestBody);
+                StaticDataSource.Data.Add(person);
+            }
+
+            return Json(StaticDataSource.Data);
         }
     }
 }
