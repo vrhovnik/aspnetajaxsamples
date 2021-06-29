@@ -1,0 +1,20 @@
+name: Continuous Build for ASP.NET Core Ajax Samples
+
+on:
+  push:
+    branches: [ main ]  
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: ./AjaxWebDemos/  
+jobs:
+  build-the-solution:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.8.0
+        with:
+          dotnet-version: 5.0.x
+      - name: Build with dotnet
+        run: dotnet build --configuration Release  
