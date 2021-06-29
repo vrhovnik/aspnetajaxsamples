@@ -5,8 +5,8 @@ Sample code for ASP.NET Core Ajax calls for reference ([JQuery](https://jquery.c
 # Sample list
 
 There is multiple pages, which demonstrate:
-1. classic JQuery Ajax GET call - frontend here and backend here
-2. classic JQuery Ajax POST call - frontend here and backend here
+1. classic JQuery Ajax GET call - frontend [here](https://github.com/vrhovnik/aspnetajaxsamples/blob/main/AjaxWebDemo/AjaxWebDemo/Views/Home/Index.cshtml#L30) and backend [here](https://github.com/vrhovnik/aspnetajaxsamples/blob/main/AjaxWebDemo/AjaxWebDemo/Controllers/DataController.cs#L23)
+2. classic JQuery Ajax POST call - frontend [here](https://github.com/vrhovnik/aspnetajaxsamples/blob/main/AjaxWebDemo/AjaxWebDemo/Views/Home/Index.cshtml#L51) and backend [here](https://github.com/vrhovnik/aspnetajaxsamples/blob/main/AjaxWebDemo/AjaxWebDemo/Controllers/DataController.cs#L32)
 
 # Additional links
 
