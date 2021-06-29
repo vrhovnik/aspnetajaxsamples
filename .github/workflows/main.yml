@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 defaults:
   run:
-    working-directory: ./AjaxWebDemos/  
+    working-directory: ./AjaxWebDemo/  
 jobs:
   build-the-solution:
     runs-on: ubuntu-latest
